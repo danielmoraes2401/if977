@@ -64,26 +64,8 @@ class Customer {
         let result = `Rental Record for ${this.name}\n`;
 
         for (let rental of this.rentals) {
-            let thisAmount = 0;
-
-            // Determine amounts for each line
-            switch (rental.movie.priceCode) {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (rental.daysRented > 2) {
-                        thisAmount += (rental.daysRented - 2) * 1.5;
-                    }
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += rental.daysRented * 3;
-                    break;
-                case Movie.CHILDREN:
-                    thisAmount += 1.5;
-                    if (rental.daysRented > 3) {
-                        thisAmount += (rental.daysRented - 3) * 1.5;
-                    }
-                    break;
-            }
+            
+			let thisAmount = this.amountFor(rental);
 
             frequentRenterPoints++;
 
@@ -101,7 +83,34 @@ class Customer {
         result += `Amount owed is ${totalAmount}\nYou earned ${frequentRenterPoints} frequent renter points`;
         return result;
     }
-}
+	
+	amountFor() {
+		let thisAmount = 0;
+
+        // Determine amounts for each line
+        switch (rental.movie.priceCode) {
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if (rental.daysRented > 2) {
+                    thisAmount += (rental.daysRented - 2) * 1.5;
+                }
+                break;
+            case Movie.NEW_RELEASE:
+                thisAmount += rental.daysRented * 3;
+                break;
+            case Movie.CHILDREN:
+                thisAmount += 1.5;
+                if (rental.daysRented > 3) {
+                    thisAmount += (rental.daysRented - 3) * 1.5;
+                }
+                break;
+        }
+		
+		return amount;
+		
+	    }
+		
+    }
 
 function test() {
     const c = new Customer("Alice");
