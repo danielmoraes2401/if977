@@ -92,7 +92,6 @@ class Customer {
 
         for (let rental of this.rentals) {
             
-			let thisAmount = rental.getCharge();
 
             frequentRenterPoints++;
 
@@ -102,8 +101,8 @@ class Customer {
             }
 
             //show figures for this rental
-            result += `\t${rental.movie.title}\t${thisAmount}\n`;
-            totalAmount += thisAmount;
+            result += `\t${rental.movie.title}\t${rental.getCharge()}\n`;
+            totalAmount += rental.getCharge();
         }
 
         //add footer lines
