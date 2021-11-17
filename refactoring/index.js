@@ -196,10 +196,10 @@ function test() {
     const actualOutput = c.statement();
 
     const expectedOutput = 
-    `Aluguel registrado por Vinicius\n` +
-    `Ratatouille\t1.5\n` +
-    `Harry Potter e as Reliquias da Morte Parte 1\t2\n` +
-    `Duna\t30\n` +
+    `Aluguel registrado por Daniel\n` +
+    `Interstellar\t1.5\n` +
+    `2001\t2\n` +
+    `Ad Astra\t30\n` +
 `Montante devido e 33.5\nVoce ganhou 4 pontos de locatorios frequentes`;
 
     const testPassed = expectedOutput === actualOutput;
