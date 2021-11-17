@@ -97,7 +97,8 @@ class Customer {
     }
 
     statement() {
-        let totalAmount = 0;
+        
+		
         let frequentRenterPoints = 0;
 
         let result = `Rental Record for ${this.name}\n`;
@@ -113,10 +114,30 @@ class Customer {
         }
 
         //add footer lines
-        result += `Amount owed is ${totalAmount}\nYou earned ${frequentRenterPoints} frequent renter points`;
+        result += `Amount owed is ${this.getTotalCharge()}\nYou earned ${this.getTotalFrequentRenterPoints()} frequent renter points`;
         return result;
     }
 	
+	
+	getTotalCharge(){
+		let result = 0;
+		
+		for (let rental of this.rentals){
+		result += rental.getCharge()
+		}
+		return result;
+	}
+		
+		
+		
+	getTotalFrequentRenterPoints(){
+		let result = 0;
+		for (let rental of this.rentals){
+		result += rental.getFrequentRenterPoints();
+		}
+		return result
+	}
+		
 		
     }
 
