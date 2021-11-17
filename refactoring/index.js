@@ -30,7 +30,34 @@ class Rental {
     constructor(movie, daysRented) {
         this._movie = movie;
         this._daysRented = daysRented;
+		
     }
+	
+	getCharge() {
+		let thisAmount = 0;
+	
+		// Determine amounts for each line
+		switch (rental.movie.priceCode) {
+			case Movie.REGULAR:
+				thisAmount += 2;
+				if (rental.daysRented > 2) {
+					thisAmount += (rental.daysRented - 2) * 1.5;
+				}
+				break;
+			case Movie.NEW_RELEASE:
+				thisAmount += rental.daysRented * 3;
+				break;
+			case Movie.CHILDREN:
+				thisAmount += 1.5;
+				if (rental.daysRented > 3) {
+					thisAmount += (rental.daysRented - 3) * 1.5;
+				}
+				break;
+		}
+		
+		return amount;
+	
+	   }
 
 
     get movie() { return this._movie; }
@@ -65,7 +92,7 @@ class Customer {
 
         for (let rental of this.rentals) {
             
-			let thisAmount = this.amountFor(rental);
+			let thisAmount = rental.getCharge();
 
             frequentRenterPoints++;
 
@@ -84,31 +111,6 @@ class Customer {
         return result;
     }
 	
-	amountFor() {
-		let thisAmount = 0;
-
-        // Determine amounts for each line
-        switch (rental.movie.priceCode) {
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if (rental.daysRented > 2) {
-                    thisAmount += (rental.daysRented - 2) * 1.5;
-                }
-                break;
-            case Movie.NEW_RELEASE:
-                thisAmount += rental.daysRented * 3;
-                break;
-            case Movie.CHILDREN:
-                thisAmount += 1.5;
-                if (rental.daysRented > 3) {
-                    thisAmount += (rental.daysRented - 3) * 1.5;
-                }
-                break;
-        }
-		
-		return amount;
-		
-	    }
 		
     }
 
